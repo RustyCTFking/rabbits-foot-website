@@ -1,9 +1,19 @@
+import EstimateCTA from "@/components/sections/EstimateCTA";
+import FAQ from "@/components/sections/FAQ";
+import Hero from "@/components/sections/Hero";
+import Process from "@/components/sections/Process";
+import Services from "@/components/sections/Services";
+import WhyChoose from "@/components/sections/WhyChoose";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white flex items-center justify-center">
-      <h1 className="text-5xl font-bold text-black">
-        Rabbit&apos;s Foot
-      </h1>
+    <main>
+      <Hero />
+      <Services />
+      <WhyChoose />
+      <Process />
+      <EstimateCTA />
+      <FAQ />
     </main>
   );
 }
