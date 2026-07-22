@@ -7,22 +7,18 @@ import EstimateForm from "@/components/contact/EstimateForm";
 import ServiceArea from "@/components/contact/ServiceArea";
 
 export const metadata: Metadata = {
-  title: "Contact | Rabbit's Foot Handyman Services",
+  title: "Request a Handyman Estimate",
   description:
-    "Request a free estimate from Rabbit's Foot Handyman Services. Serving Mishawaka, South Bend, Granger, Elkhart, and surrounding communities.",
+    "Request a free estimate from Rabbit's Foot Handyman Services for repairs, installations, assembly, and home improvements in Mishawaka, South Bend, Granger, Elkhart, and nearby communities.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="bg-[#f8f8f8]">
+    <main className="overflow-hidden">
       <ContactHero />
-
       <EstimateForm />
-
       <ContactInfo />
-
       <ServiceArea />
-
       <ContactCTA />
     </main>
   );

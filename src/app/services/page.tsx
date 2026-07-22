@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
+  ArrowRight,
   Brush,
   Check,
   CircleHelp,
@@ -16,6 +19,7 @@ import {
 import Container from "@/components/layout/Container";
 
 type Service = {
+  id: string;
   title: string;
   shortDescription: string;
   description: string;
@@ -25,6 +29,7 @@ type Service = {
 
 const services: Service[] = [
   {
+    id: "drywall-repair",
     title: "Drywall Repair",
     shortDescription:
       "Clean, dependable repairs for holes, cracks, dents, and damaged drywall.",
@@ -41,6 +46,7 @@ const services: Service[] = [
     ],
   },
   {
+    id: "tv-mounting",
     title: "TV Mounting",
     shortDescription:
       "Secure television mounting with careful placement and a clean appearance.",
@@ -57,6 +63,7 @@ const services: Service[] = [
     ],
   },
   {
+    id: "ceiling-fan-installation",
     title: "Ceiling Fan Installation",
     shortDescription:
       "Professional installation and replacement of ceiling fans and fixtures.",
@@ -73,6 +80,7 @@ const services: Service[] = [
     ],
   },
   {
+    id: "furniture-assembly",
     title: "Furniture Assembly",
     shortDescription:
       "Careful assembly of ready-to-build furniture for your home or office.",
@@ -89,6 +97,7 @@ const services: Service[] = [
     ],
   },
   {
+    id: "door-repairs-and-hardware",
     title: "Door Repairs & Hardware",
     shortDescription:
       "Adjustments and repairs for sticking doors, handles, hinges, and hardware.",
@@ -105,6 +114,7 @@ const services: Service[] = [
     ],
   },
   {
+    id: "painting-and-touch-ups",
     title: "Painting & Touch-Ups",
     shortDescription:
       "Small-area painting and touch-up work that refreshes your living space.",
@@ -121,6 +131,7 @@ const services: Service[] = [
     ],
   },
   {
+    id: "general-handyman-repairs",
     title: "General Handyman Repairs",
     shortDescription:
       "Practical help with the smaller repairs and improvements around your home.",
@@ -138,61 +149,48 @@ const services: Service[] = [
   },
 ];
 
-export const metadata = {
-  title: "Handyman Services | Rabbit's Foot Handyman Services",
+export const metadata: Metadata = {
+  title: "Handyman Services in Mishawaka, IN",
   description:
-    "Explore dependable handyman services including drywall repair, TV mounting, ceiling fan installation, furniture assembly, door repair, painting, and general home repairs.",
+    "Explore Rabbit's Foot handyman services in Mishawaka, South Bend, Granger, Elkhart, and nearby communities. Services include drywall repair, TV mounting, furniture assembly, door repair, painting, and home improvements.",
 };
 
-function ServiceCard({
-  service,
-  index,
-}: {
-  service: Service;
-  index: number;
-}) {
+function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
-  const number = String(index + 1).padStart(2, "0");
 
   return (
     <article
-      id={service.title.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")}
-      className="scroll-mt-28 overflow-hidden rounded-[2rem] border border-black/5 bg-white/85 shadow-[0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl"
+      id={service.id}
+      className="scroll-mt-28 overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
     >
-      <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="relative overflow-hidden bg-[#111111] p-8 text-white sm:p-10 lg:p-12">
+      <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="relative overflow-hidden bg-[#101210] p-7 text-white sm:p-10 lg:p-12">
           <div
             aria-hidden="true"
-            className="absolute -right-16 -top-16 size-52 rounded-full bg-[#84bd00]/20 blur-3xl"
+            className="absolute -right-20 -top-20 size-64 rounded-full bg-[#84bd00]/20 blur-3xl"
           />
 
           <div className="relative">
-            <div className="flex items-start justify-between gap-6">
-              <span className="text-sm font-black tracking-[0.25em] text-[#84bd00]">
-                {number}
-              </span>
-
-              <span className="flex size-14 items-center justify-center rounded-2xl bg-[#84bd00] text-black">
-                <Icon aria-hidden="true" className="size-7" />
-              </span>
+            <div className="flex size-16 items-center justify-center rounded-2xl bg-[#84bd00] text-black shadow-[0_12px_28px_rgba(132,189,0,0.22)]">
+              <Icon aria-hidden="true" className="size-8" strokeWidth={2.2} />
             </div>
 
-            <h2 className="mt-14 text-3xl font-black tracking-[-0.04em] sm:text-4xl">
+            <h2 className="mt-8 text-3xl font-black leading-tight tracking-[-0.04em] sm:text-4xl">
               {service.title}
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-white/65">
+            <p className="mt-5 text-lg leading-8 text-white/70">
               {service.shortDescription}
             </p>
           </div>
         </div>
 
-        <div className="p-8 sm:p-10 lg:p-12">
+        <div className="p-7 sm:p-10 lg:p-12">
           <p className="text-lg leading-8 text-neutral-600">
             {service.description}
           </p>
 
-          <h3 className="mt-8 text-sm font-black uppercase tracking-[0.22em] text-[#6d9911]">
+          <h3 className="mt-8 text-sm font-black uppercase tracking-[0.22em] text-[#679500]">
             Common projects include
           </h3>
 
@@ -210,12 +208,13 @@ function ServiceCard({
             ))}
           </ul>
 
-          <a
-            href="#service-estimate"
-            className="mt-9 inline-flex min-h-12 items-center justify-center rounded-full bg-black px-7 font-black text-white transition hover:-translate-y-0.5 hover:bg-[#84bd00] hover:text-black"
+          <Link
+            href="/contact#estimate-form"
+            className="rf-button-primary mt-9 sm:w-auto"
           >
-            Request an Estimate
-          </a>
+            Request This Service
+            <ArrowRight aria-hidden="true" className="size-5" />
+          </Link>
         </div>
       </div>
     </article>
@@ -225,9 +224,9 @@ function ServiceCard({
 export default function ServicesPage() {
   return (
     <main className="overflow-hidden">
-      <section className="relative px-4 pb-20 pt-36 sm:px-6 sm:pb-24 sm:pt-40 lg:px-8">
+      <section className="px-4 pb-16 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8">
         <Container>
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#111111] px-7 py-16 text-white shadow-[0_30px_90px_rgba(0,0,0,0.22)] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] px-7 py-14 text-white shadow-[0_30px_90px_rgba(0,0,0,0.22)] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
             <div
               aria-hidden="true"
               className="absolute -right-24 -top-24 size-96 rounded-full bg-[#84bd00]/20 blur-3xl"
@@ -239,33 +238,27 @@ export default function ServicesPage() {
             />
 
             <div className="relative max-w-4xl">
-              <p className="text-sm font-black uppercase tracking-[0.3em] text-[#84bd00]">
-                Handyman services
-              </p>
+              <p className="rf-eyebrow text-[#84bd00]">Handyman services</p>
 
-              <h1 className="mt-6 text-5xl font-black leading-[0.95] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
-                Reliable help for the projects around your home.
+              <h1 className="mt-6 text-5xl font-black leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-7xl">
+                Practical help for the projects around your home.
               </h1>
 
-              <p className="mt-8 max-w-3xl text-lg leading-8 text-white/65 sm:text-xl sm:leading-9">
+              <p className="mt-8 max-w-3xl text-lg leading-8 text-white/70 sm:text-xl sm:leading-9">
                 From repairs and installations to furniture assembly and
-                smaller home improvements, Rabbit&apos;s Foot delivers
-                dependable service, honest communication, and careful
-                workmanship.
+                smaller improvements, Rabbit&apos;s Foot delivers careful
+                workmanship and straightforward communication.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <a
-                  href="#services-list"
-                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#84bd00] px-8 font-black text-black transition hover:-translate-y-0.5 hover:bg-[#93d100]"
-                >
+                <a href="#services-list" className="rf-button-primary sm:w-auto">
                   <Drill aria-hidden="true" className="size-5" />
                   Explore Services
                 </a>
 
                 <a
                   href="tel:+15747035978"
-                  className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border-2 border-white/30 px-8 font-black text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black"
+                  className="rf-button-secondary sm:w-auto"
                 >
                   <Phone aria-hidden="true" className="size-5" />
                   Call (574) 703-5978
@@ -276,33 +269,24 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section
-        id="services-list"
-        className="scroll-mt-24 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
-      >
+      <section id="services-list" className="rf-section scroll-mt-28">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-black uppercase tracking-[0.3em] text-[#6d9911]">
-              What we can help with
-            </p>
+            <p className="rf-eyebrow">What we can help with</p>
 
-            <h2 className="mt-5 text-4xl font-black leading-tight tracking-[-0.04em] text-black sm:text-5xl lg:text-6xl">
-              Practical services. Professional results.
+            <h2 className="rf-heading mt-5">
+              Useful services for real household projects.
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-neutral-600">
-              Browse our most frequently requested services. Project details
-              vary, so contact us to discuss the work needed in your home.
+              Browse our most frequently requested services. Every project is
+              different, so contact us to discuss what your home needs.
             </p>
           </div>
 
           <div className="mt-14 grid gap-8 sm:mt-16">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={service.title}
-                service={service}
-                index={index}
-              />
+            {services.map((service) => (
+              <ServiceCard key={service.id} service={service} />
             ))}
           </div>
         </Container>
@@ -310,8 +294,8 @@ export default function ServicesPage() {
 
       <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <Container>
-          <div className="grid gap-8 rounded-[2rem] border border-black/5 bg-white/80 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.07)] backdrop-blur-xl sm:p-10 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:p-12">
-            <span className="flex size-16 items-center justify-center rounded-2xl bg-[#84bd00] text-black">
+          <div className="grid gap-7 rounded-[2rem] border border-black/10 bg-white p-7 shadow-[0_20px_60px_rgba(0,0,0,0.07)] sm:p-10 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:p-12">
+            <span className="flex size-16 items-center justify-center rounded-2xl bg-[#101210] text-[#84bd00]">
               <CircleHelp aria-hidden="true" className="size-8" />
             </span>
 
@@ -321,15 +305,14 @@ export default function ServicesPage() {
               </h2>
 
               <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-                This page covers our most common services, but every home has a
-                different to-do list. Contact us with your project details and
-                we&apos;ll let you know whether it is a good fit.
+                Every home has a different to-do list. Tell us about your
+                project and we&apos;ll let you know whether it is a good fit.
               </p>
             </div>
 
             <a
               href="tel:+15747035978"
-              className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border-2 border-black px-8 font-black text-black transition hover:bg-black hover:text-white"
+              className="rf-button-secondary sm:w-auto"
             >
               <Phone aria-hidden="true" className="size-5" />
               Ask About Your Project
@@ -340,17 +323,17 @@ export default function ServicesPage() {
 
       <section
         id="service-estimate"
-        className="scroll-mt-24 px-4 pb-24 pt-12 sm:px-6 sm:pb-28 sm:pt-16 lg:px-8"
+        className="scroll-mt-28 px-4 pb-24 pt-12 sm:px-6 sm:pb-28 sm:pt-16 lg:px-8"
       >
         <Container>
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#111111] px-7 py-16 text-center text-white shadow-[0_30px_80px_rgba(0,0,0,0.22)] sm:px-12 sm:py-20">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] px-7 py-14 text-center text-white shadow-[0_30px_80px_rgba(0,0,0,0.22)] sm:px-12 sm:py-20">
             <div
               aria-hidden="true"
               className="absolute left-1/2 top-0 size-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#84bd00]/20 blur-3xl"
             />
 
             <div className="relative mx-auto max-w-3xl">
-              <p className="text-sm font-black uppercase tracking-[0.3em] text-[#84bd00]">
+              <p className="rf-eyebrow text-[#84bd00]">
                 Ready to get started?
               </p>
 
@@ -358,23 +341,24 @@ export default function ServicesPage() {
                 Let&apos;s get your project off the to-do list.
               </h2>
 
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/65">
-                Tell us what needs to be repaired, installed, assembled, or
-                improved. We&apos;ll discuss the project and help you determine
-                the next step.
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/70">
+                Send us your project details and photos through the estimate
+                form. We&apos;ll review the request and help determine the next
+                step.
               </p>
 
               <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-                <a
-                  href="mailto:callrabbitsfoot@gmail.com?subject=Service Estimate Request"
-                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-[#84bd00] px-9 font-black text-black transition hover:-translate-y-0.5 hover:bg-[#93d100]"
+                <Link
+                  href="/contact#estimate-form"
+                  className="rf-button-primary sm:w-auto"
                 >
                   Request an Estimate
-                </a>
+                  <ArrowRight aria-hidden="true" className="size-5" />
+                </Link>
 
                 <a
                   href="tel:+15747035978"
-                  className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border-2 border-white/30 px-9 font-black text-white transition hover:border-white hover:bg-white hover:text-black"
+                  className="rf-button-secondary sm:w-auto"
                 >
                   <Phone aria-hidden="true" className="size-5" />
                   Call (574) 703-5978

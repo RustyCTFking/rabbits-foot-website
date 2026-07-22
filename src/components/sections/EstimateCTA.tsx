@@ -1,8 +1,9 @@
 import Link from "next/link";
 import {
+  ArrowRight,
   Clock3,
-  DollarSign,
   MapPin,
+  MessageCircle,
   Phone,
 } from "lucide-react";
 
@@ -11,92 +12,102 @@ import Container from "@/components/layout/Container";
 const trustPoints = [
   {
     icon: Clock3,
-    label: "Fast Response",
+    label: "Prompt communication",
   },
   {
-    icon: DollarSign,
-    label: "Honest Pricing",
+    icon: MessageCircle,
+    label: "Clear project details",
   },
   {
     icon: MapPin,
-    label: "Locally Owned",
-  },
-  {
-    icon: Phone,
-    label: "Quality Workmanship",
+    label: "Local Michiana service",
   },
 ];
 
 export default function EstimateCTA() {
   return (
-    <section
-      id="estimate"
-      className="relative bg-transparent py-28"
-    >
+    <section id="estimate" className="rf-section scroll-mt-28">
       <Container>
-        <div className="relative overflow-hidden rounded-[42px] bg-[#111111] px-8 py-20 shadow-[0_30px_80px_rgba(0,0,0,.25)] lg:px-20">
-          {/* Background Glow */}
-          <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-[#84bd00]/20 blur-3xl" />
-          <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-[#84bd00]/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] px-6 py-12 text-white shadow-[0_28px_80px_rgba(0,0,0,0.22)] sm:px-10 sm:py-16 lg:px-16">
+          <div
+            aria-hidden="true"
+            className="absolute -right-32 -top-32 size-96 rounded-full bg-[#84bd00]/20 blur-3xl"
+          />
 
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <p className="text-sm font-black uppercase tracking-[0.35em] text-[#84bd00]">
-              READY TO GET STARTED?
-            </p>
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-40 -left-24 size-96 rounded-full bg-[#84bd00]/10 blur-3xl"
+          />
 
-            <h2 className="mt-6 text-5xl font-black leading-tight text-white lg:text-7xl">
-              Let's get that project
-              <span className="block text-[#84bd00]">
-                off your to-do list.
-              </span>
-            </h2>
+          <div className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="rf-eyebrow text-[#84bd00]">
+                Ready to get started?
+              </p>
 
-            <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-white/70">
-              Tell us what you need repaired, installed, assembled, or
-              improved. We'll respond quickly and help you schedule your
-              project.
-            </p>
+              <h2 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+                Let&apos;s get your project off the to-do list.
+              </h2>
 
-            {/* Buttons */}
-            <div className="mt-14 flex flex-col justify-center gap-5 sm:flex-row">
-              <Link
-                href="/contact#estimate-form"
-                className="inline-flex h-16 items-center justify-center rounded-full bg-[#84bd00] px-12 text-lg font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-[#93d100]"
-              >
-                Request a Free Estimate
-              </Link>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70">
+                Tell us what you need repaired, installed, assembled, or
+                improved. We&apos;ll review the details and help you determine
+                the next step.
+              </p>
 
-              <a
-                href="tel:+15747035978"
-                className="inline-flex h-16 items-center justify-center gap-3 rounded-full border-2 border-white/40 px-12 text-lg font-black text-white transition-all duration-300 hover:-translate-y-1 hover:border-white hover:bg-white hover:text-black"
-              >
-                <Phone size={22} />
-                Call (574) 703-5978
-              </a>
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+                <Link
+                  href="/contact#estimate-form"
+                  className="rf-button-primary sm:w-auto"
+                >
+                  Request a Free Estimate
+                  <ArrowRight aria-hidden="true" className="size-5" />
+                </Link>
+
+                <a
+                  href="tel:+15747035978"
+                  className="rf-button-secondary sm:w-auto"
+                >
+                  <Phone aria-hidden="true" className="size-5" />
+                  Call (574) 703-5978
+                </a>
+              </div>
             </div>
 
-            {/* Trust Row */}
-            <div className="mt-16 border-t border-white/10 pt-10">
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm sm:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.24em] text-[#84bd00]">
+                What to expect
+              </p>
+
+              <div className="mt-6 grid gap-4">
                 {trustPoints.map((item) => {
                   const Icon = item.icon;
 
                   return (
                     <div
                       key={item.label}
-                      className="flex items-center justify-center gap-3"
+                      className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4"
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#84bd00] text-black">
-                        <Icon size={20} />
+                      <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#84bd00] text-black">
+                        <Icon
+                          aria-hidden="true"
+                          className="size-5"
+                          strokeWidth={2.2}
+                        />
                       </div>
 
-                      <span className="font-bold text-white">
+                      <span className="font-bold text-white/85">
                         {item.label}
                       </span>
                     </div>
                   );
                 })}
               </div>
+
+              <p className="mt-6 border-t border-white/10 pt-6 text-sm leading-6 text-white/55">
+                Adding project details and photos helps us understand the work
+                before contacting you.
+              </p>
             </div>
           </div>
         </div>

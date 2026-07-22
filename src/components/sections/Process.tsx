@@ -1,5 +1,5 @@
 import {
-  CalendarDays,
+  CalendarCheck,
   CheckCircle2,
   ClipboardList,
   Hammer,
@@ -10,31 +10,27 @@ import Container from "@/components/layout/Container";
 const steps = [
   {
     icon: ClipboardList,
-    number: "01",
-    title: "Request an Estimate",
+    title: "Tell Us What You Need",
     description:
-      "Call, text, or submit our estimate form. Tell us about your project and we will respond promptly.",
+      "Call, text, or submit the estimate form with details about your project.",
   },
   {
-    icon: CalendarDays,
-    number: "02",
-    title: "Schedule Your Service",
+    icon: CalendarCheck,
+    title: "Choose a Convenient Time",
     description:
-      "Choose a date and time that fits your schedule. We will confirm every detail before arriving.",
+      "We’ll review the request, discuss the details, and schedule a time that works for you.",
   },
   {
     icon: Hammer,
-    number: "03",
-    title: "Professional Work",
+    title: "We Complete the Work",
     description:
-      "We complete your project with quality workmanship, clear communication, and respect for your home.",
+      "Your project is handled with careful workmanship, clear communication, and respect for your home.",
   },
   {
     icon: CheckCircle2,
-    number: "04",
-    title: "Enjoy the Results",
+    title: "Enjoy the Finished Result",
     description:
-      "Your project is finished and ready to enjoy. Our goal is work you would be happy to recommend.",
+      "We’ll review the completed work with you and make sure everything meets expectations.",
   },
 ];
 
@@ -42,45 +38,41 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="relative scroll-mt-24 bg-transparent py-24 sm:py-28"
+      className="rf-section relative scroll-mt-28 overflow-hidden"
     >
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-[0.3em] text-[#6d9911]">
-            Our process
-          </p>
+          <p className="rf-eyebrow">How it works</p>
 
-          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] text-black sm:text-5xl">
-            Simple. Honest.
-            <span className="block">Stress-free.</span>
+          <h2 className="rf-heading mt-5">
+            A straightforward process from start to finish.
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-neutral-600">
-            From your first call to the final walkthrough, we make every project
-            straightforward and hassle-free.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-neutral-600">
+            Getting dependable help for your home shouldn&apos;t be complicated.
+            We keep every step clear, organized, and easy to understand.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="relative mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div
+            aria-hidden="true"
+            className="absolute left-[12.5%] right-[12.5%] top-9 hidden h-px bg-gradient-to-r from-transparent via-[#84bd00]/35 to-transparent lg:block"
+          />
+
           {steps.map((step) => {
             const Icon = step.icon;
 
             return (
               <article
-                key={step.number}
-                className="group rounded-[1.75rem] border border-white/70 bg-white/75 p-7 shadow-[0_16px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#84bd00]/50 hover:bg-white/90 hover:shadow-[0_22px_60px_rgba(0,0,0,0.13)]"
+                key={step.title}
+                className="rf-card relative flex h-full flex-col p-7 sm:p-8"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex size-14 items-center justify-center rounded-full bg-[#84bd00] text-black">
-                    <Icon aria-hidden="true" className="size-7" />
-                  </div>
-
-                  <span className="text-5xl font-black text-black/10">
-                    {step.number}
-                  </span>
+                <div className="relative z-10 flex size-16 items-center justify-center rounded-2xl bg-[#84bd00] text-black shadow-[0_10px_25px_rgba(132,189,0,0.22)]">
+                  <Icon aria-hidden="true" className="size-7" strokeWidth={2.2} />
                 </div>
 
-                <h3 className="mt-8 text-2xl font-black tracking-tight text-black">
+                <h3 className="mt-7 text-2xl font-black leading-tight tracking-[-0.035em] text-black">
                   {step.title}
                 </h3>
 

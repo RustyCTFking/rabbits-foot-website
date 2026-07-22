@@ -7,13 +7,13 @@ import WhyChoose from "@/components/sections/WhyChoose";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       <Hero />
       <Services />
       <WhyChoose />
       <Process />
-      <EstimateCTA />
       <FAQ />
+      <EstimateCTA />
     </main>
   );
 }

@@ -1,6 +1,11 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import {
+  type ChangeEvent,
+  type FormEvent,
+  useRef,
+  useState,
+} from "react";
 import {
   AlertCircle,
   CheckCircle2,
@@ -9,6 +14,8 @@ import {
   Send,
   Trash2,
 } from "lucide-react";
+
+import Container from "@/components/layout/Container";
 
 const serviceOptions = [
   "Drywall Repair",
@@ -31,6 +38,11 @@ const allowedFileTypes = [
   "image/heic",
   "image/heif",
 ];
+
+const fieldClassName =
+  "mt-2.5 min-h-14 w-full rounded-2xl border border-black/10 bg-white px-5 text-base text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15";
+
+const labelClassName = "text-sm font-black text-neutral-900";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -167,34 +179,36 @@ export default function EstimateForm() {
     return (
       <section
         id="estimate-form"
-        className="scroll-mt-32 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        className="scroll-mt-32 py-16 sm:py-20"
       >
-        <div className="mx-auto max-w-4xl rounded-[2rem] border border-black/5 bg-white/90 px-7 py-16 text-center shadow-[0_24px_70px_rgba(0,0,0,0.09)] backdrop-blur-xl sm:px-12">
-          <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-[#84bd00] text-black">
-            <CheckCircle2 aria-hidden="true" className="size-8" />
-          </span>
+        <Container>
+          <div className="mx-auto max-w-4xl rounded-[2rem] border border-black/10 bg-white px-7 py-14 text-center shadow-[0_24px_70px_rgba(0,0,0,0.09)] sm:px-12 sm:py-16">
+            <span className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-[#84bd00] text-black">
+              <CheckCircle2 aria-hidden="true" className="size-8" />
+            </span>
 
-          <h2 className="mt-6 text-3xl font-black tracking-[-0.04em] text-black sm:text-4xl">
-            Your request has been sent.
-          </h2>
+            <h2 className="mt-6 text-3xl font-black tracking-[-0.04em] text-black sm:text-4xl">
+              Your request has been sent.
+            </h2>
 
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-neutral-600">
-            Thank you for contacting Rabbit&apos;s Foot Handyman Services.
-            We&apos;ll review your project details and photos and get back to
-            you as soon as possible.
-          </p>
+            <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-neutral-600">
+              Thank you for contacting Rabbit&apos;s Foot Handyman Services.
+              We&apos;ll review your project details and photos and contact you
+              as soon as possible.
+            </p>
 
-          <button
-            type="button"
-            onClick={() => {
-              setStatus("idle");
-              setErrorMessage("");
-            }}
-            className="mt-8 inline-flex min-h-13 items-center justify-center rounded-full bg-black px-8 font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#84bd00] hover:text-black"
-          >
-            Submit Another Request
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={() => {
+                setStatus("idle");
+                setErrorMessage("");
+              }}
+              className="rf-button-secondary mx-auto mt-8 sm:w-auto"
+            >
+              Submit Another Request
+            </button>
+          </div>
+        </Container>
       </section>
     );
   }
@@ -202,20 +216,18 @@ export default function EstimateForm() {
   return (
     <section
       id="estimate-form"
-      className="scroll-mt-32 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      className="scroll-mt-32 py-16 sm:py-20"
     >
-      <div className="mx-auto max-w-6xl">
-        <div className="grid overflow-hidden rounded-[2.25rem] border border-black/5 bg-white/90 shadow-[0_24px_70px_rgba(0,0,0,0.09)] backdrop-blur-xl lg:grid-cols-[0.72fr_1.28fr]">
-          <div className="relative overflow-hidden bg-[#111111] px-7 py-12 text-white sm:px-10 sm:py-14 lg:px-12">
+      <Container>
+        <div className="grid overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_24px_70px_rgba(0,0,0,0.09)] lg:grid-cols-[0.72fr_1.28fr]">
+          <aside className="relative overflow-hidden bg-[#101210] px-7 py-12 text-white sm:px-10 sm:py-14 lg:px-12">
             <div
               aria-hidden="true"
               className="absolute -right-24 -top-24 size-72 rounded-full bg-[#84bd00]/20 blur-3xl"
             />
 
             <div className="relative">
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#84bd00]">
-                Project details
-              </p>
+              <p className="rf-eyebrow text-[#84bd00]">Project details</p>
 
               <h2 className="mt-5 text-4xl font-black leading-tight tracking-[-0.045em]">
                 Request your estimate.
@@ -266,7 +278,7 @@ export default function EstimateForm() {
                 Fields marked with an asterisk are required.
               </p>
             </div>
-          </div>
+          </aside>
 
           <form
             onSubmit={handleSubmit}
@@ -292,10 +304,7 @@ export default function EstimateForm() {
 
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
-                <label
-                  htmlFor="name"
-                  className="text-sm font-black text-neutral-900"
-                >
+                <label htmlFor="name" className={labelClassName}>
                   Full Name *
                 </label>
 
@@ -307,15 +316,12 @@ export default function EstimateForm() {
                   required
                   maxLength={100}
                   placeholder="Your name"
-                  className="mt-2.5 min-h-14 w-full rounded-2xl border border-black/10 bg-white px-5 text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
+                  className={fieldClassName}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="phone"
-                  className="text-sm font-black text-neutral-900"
-                >
+                <label htmlFor="phone" className={labelClassName}>
                   Phone Number *
                 </label>
 
@@ -327,17 +333,14 @@ export default function EstimateForm() {
                   required
                   maxLength={40}
                   placeholder="(574) 555-1234"
-                  className="mt-2.5 min-h-14 w-full rounded-2xl border border-black/10 bg-white px-5 text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
+                  className={fieldClassName}
                 />
               </div>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
-                <label
-                  htmlFor="email"
-                  className="text-sm font-black text-neutral-900"
-                >
+                <label htmlFor="email" className={labelClassName}>
                   Email Address *
                 </label>
 
@@ -349,15 +352,12 @@ export default function EstimateForm() {
                   required
                   maxLength={150}
                   placeholder="you@example.com"
-                  className="mt-2.5 min-h-14 w-full rounded-2xl border border-black/10 bg-white px-5 text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
+                  className={fieldClassName}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="service"
-                  className="text-sm font-black text-neutral-900"
-                >
+                <label htmlFor="service" className={labelClassName}>
                   Service Needed *
                 </label>
 
@@ -366,7 +366,7 @@ export default function EstimateForm() {
                   name="service"
                   required
                   defaultValue=""
-                  className="mt-2.5 min-h-14 w-full rounded-2xl border border-black/10 bg-white px-5 text-black outline-none transition focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
+                  className={fieldClassName}
                 >
                   <option value="" disabled>
                     Select a service
@@ -382,10 +382,7 @@ export default function EstimateForm() {
             </div>
 
             <div>
-              <label
-                htmlFor="address"
-                className="text-sm font-black text-neutral-900"
-              >
+              <label htmlFor="address" className={labelClassName}>
                 Project Address
                 <span className="ml-1 font-medium text-neutral-400">
                   Optional
@@ -399,15 +396,12 @@ export default function EstimateForm() {
                 autoComplete="street-address"
                 maxLength={250}
                 placeholder="Street address and city"
-                className="mt-2.5 min-h-14 w-full rounded-2xl border border-black/10 bg-white px-5 text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
+                className={fieldClassName}
               />
             </div>
 
             <div>
-              <label
-                htmlFor="description"
-                className="text-sm font-black text-neutral-900"
-              >
+              <label htmlFor="description" className={labelClassName}>
                 Project Description *
               </label>
 
@@ -418,21 +412,24 @@ export default function EstimateForm() {
                 maxLength={5000}
                 rows={7}
                 placeholder="Tell us what needs to be repaired, installed, assembled, or improved."
-                className="mt-2.5 w-full resize-y rounded-2xl border border-black/10 bg-white px-5 py-4 leading-7 text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
+                className="mt-2.5 w-full resize-y rounded-2xl border border-black/10 bg-white px-5 py-4 text-base leading-7 text-black outline-none transition placeholder:text-neutral-400 focus:border-[#84bd00] focus:ring-4 focus:ring-[#84bd00]/15"
               />
             </div>
 
             <div>
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <label className="text-sm font-black text-neutral-900">
+                  <label htmlFor="photos" className={labelClassName}>
                     Project Photos
                     <span className="ml-1 font-medium text-neutral-400">
                       Optional
                     </span>
                   </label>
 
-                  <p className="mt-1 text-sm leading-6 text-neutral-500">
+                  <p
+                    id="photo-instructions"
+                    className="mt-1 text-sm leading-6 text-neutral-500"
+                  >
                     Upload up to 5 photos. Maximum 5 MB per photo.
                   </p>
                 </div>
@@ -449,6 +446,7 @@ export default function EstimateForm() {
                 type="file"
                 accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
                 multiple
+                aria-describedby="photo-instructions"
                 onChange={handlePhotoSelection}
                 className="sr-only"
               />
@@ -457,9 +455,9 @@ export default function EstimateForm() {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={photos.length >= maximumFileCount}
-                className="mt-4 flex min-h-32 w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-black/15 bg-neutral-50 px-6 py-6 text-center transition hover:border-[#84bd00] hover:bg-[#84bd00]/5 disabled:cursor-not-allowed disabled:opacity-50"
+                className="mt-4 flex min-h-32 w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-black/15 bg-[#f6f7f2] px-6 py-6 text-center focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#84bd00]/30 active:border-[#84bd00] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <span className="flex size-12 items-center justify-center rounded-full bg-[#84bd00] text-black">
+                <span className="flex size-12 items-center justify-center rounded-xl bg-[#84bd00] text-black">
                   <ImagePlus aria-hidden="true" className="size-6" />
                 </span>
 
@@ -493,7 +491,7 @@ export default function EstimateForm() {
                         type="button"
                         onClick={() => removePhoto(index)}
                         aria-label={`Remove ${photo.name}`}
-                        className="flex size-10 shrink-0 items-center justify-center rounded-full text-neutral-500 transition hover:bg-red-50 hover:text-red-700"
+                        className="flex size-11 shrink-0 items-center justify-center rounded-xl text-neutral-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-200 active:bg-red-50 active:text-red-700"
                       >
                         <Trash2 aria-hidden="true" className="size-5" />
                       </button>
@@ -512,7 +510,8 @@ export default function EstimateForm() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex min-h-14 shrink-0 items-center justify-center gap-3 rounded-full bg-[#84bd00] px-8 font-black text-black shadow-[0_12px_28px_rgba(132,189,0,0.22)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#93d100] disabled:cursor-not-allowed disabled:opacity-65"
+                aria-live="polite"
+                className="rf-button-primary shrink-0 disabled:cursor-not-allowed disabled:opacity-65 sm:w-auto"
               >
                 {status === "submitting" ? (
                   <>
@@ -532,7 +531,7 @@ export default function EstimateForm() {
             </div>
           </form>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -16,8 +16,66 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const localBusinessData = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: "Rabbit's Foot Handyman Services",
+  description:
+    "Handyman and home repair services throughout Mishawaka, South Bend, Granger, Elkhart, and nearby Michiana communities.",
+  url: "https://www.callrabbitsfoot.com",
+  logo: "https://www.callrabbitsfoot.com/logo.png",
+  image: "https://www.callrabbitsfoot.com/logo.png",
+  telephone: "+1-574-703-5978",
+  email: "estimates@callrabbitsfoot.com",
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Mishawaka",
+    },
+    {
+      "@type": "City",
+      name: "South Bend",
+    },
+    {
+      "@type": "City",
+      name: "Granger",
+    },
+    {
+      "@type": "City",
+      name: "Elkhart",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Michiana",
+    },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ],
+      opens: "08:00",
+      closes: "17:00",
+    },
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+1-574-703-5978",
+    contactType: "customer service",
+    email: "estimates@callrabbitsfoot.com",
+    availableLanguage: "English",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.callrabbitsfoot.com"),
+
+  applicationName: "Rabbit's Foot Handyman Services",
 
   title: {
     default:
@@ -26,12 +84,11 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Professional handyman services in Mishawaka, South Bend, Granger, Elkhart, and nearby Northern Indiana communities. Drywall repair, TV mounting, door repair, furniture assembly, fixture installation, and general home repairs. Request a free estimate today.",
+    "Professional handyman services in Mishawaka, South Bend, Granger, Elkhart, and nearby Northern Indiana communities. Drywall repair, TV mounting, door repair, furniture assembly, fixture installation, and general home repairs.",
 
   keywords: [
     "handyman Mishawaka",
     "handyman South Bend",
-    "handyman near me",
     "handyman services",
     "home repair Mishawaka",
     "drywall repair Mishawaka",
@@ -51,31 +108,24 @@ export const metadata: Metadata = {
   creator: "Rabbit's Foot Handyman Services",
   publisher: "Rabbit's Foot Handyman Services",
 
-  alternates: {
-    canonical: "/",
-  },
-
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.callrabbitsfoot.com",
     siteName: "Rabbit's Foot Handyman Services",
     title:
       "Rabbit's Foot Handyman Services | Handyman in Mishawaka, IN",
     description:
-      "Professional handyman and home repair services in Mishawaka, South Bend, Granger, Elkhart, and nearby Northern Indiana communities.",
+      "Professional handyman and home repair services throughout Mishawaka, South Bend, Granger, Elkhart, and nearby Michiana communities.",
     images: [
       {
         url: "/logo.png",
-        width: 1200,
-        height: 630,
         alt: "Rabbit's Foot Handyman Services",
       },
     ],
   },
 
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title:
       "Rabbit's Foot Handyman Services | Handyman in Mishawaka, IN",
     description:
@@ -104,6 +154,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessData),
+          }}
+        />
+
         <div className="site-shell">
           <div className="site-watermark" aria-hidden="true" />
 

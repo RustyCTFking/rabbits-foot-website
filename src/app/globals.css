@@ -1,28 +1,25 @@
 @import "tailwindcss";
 
-/* =========================
-   Rabbit's Foot Design Tokens
-========================= */
-
 :root {
-  --background: #ffffff;
-  --foreground: #161616;
+  --rf-green: #84bd00;
+  --rf-green-dark: #679500;
+  --rf-black: #101210;
+  --rf-charcoal: #252825;
+  --rf-cream: #f6f7f2;
+  --rf-white: #ffffff;
+  --rf-muted: #646964;
+  --rf-border: rgba(16, 18, 16, 0.12);
 
-  --primary: #86b817;
-  --primary-dark: #6d9911;
-  --secondary: #101010;
+  --background: var(--rf-cream);
+  --foreground: var(--rf-black);
 
-  --gray-100: #f8f8f8;
-  --gray-200: #ededed;
-  --gray-400: #b5b5b5;
-  --gray-700: #4d4d4d;
+  --radius-sm: 0.875rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
 
-  --radius: 18px;
+  --shadow-soft: 0 12px 40px rgba(16, 18, 16, 0.08);
+  --shadow-card: 0 20px 60px rgba(16, 18, 16, 0.1);
 }
-
-/* =========================
-   Base Styles
-========================= */
 
 *,
 *::before,
@@ -32,12 +29,20 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--background);
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(132, 189, 0, 0.1),
+      transparent 28rem
+    ),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
@@ -62,74 +67,227 @@ select {
   font: inherit;
 }
 
-/* =========================
-   Site Structure
-========================= */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--rf-green);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--rf-green);
+  color: var(--rf-black);
+}
 
 .site-shell {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   isolation: isolate;
-  background: transparent;
 }
 
 .site-watermark {
   position: fixed;
-  top: 110px;
-  left: 70px;
-  width: 1500px;
-  height: calc(100vh - 110px);
-
-  z-index: 0;
+  top: 8rem;
+  left: max(-18rem, calc(50% - 58rem));
+  z-index: -1;
+  width: min(82rem, 105vw);
+  height: calc(100vh - 8rem);
   pointer-events: none;
   user-select: none;
-
   background-image: url("/rabbit-watermark.png");
   background-repeat: no-repeat;
   background-position: left center;
   background-size: contain;
+  opacity: 0.75;
+  animation: rf-bunny-hop 3.5s ease-in-out infinite;
+  transform-origin: center bottom;
+}
 
-  /*
-   * Do not lower this opacity.
-   * The exported Canva image already contains transparency.
-   */
-  opacity: 1;
+@keyframes rf-bunny-hop {
+  0%,
+  68%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  74% {
+    transform: translateY(-14px) rotate(-0.6deg);
+  }
+
+  80% {
+    transform: translateY(0) rotate(0.5deg);
+  }
+
+  84% {
+    transform: translateY(-5px) rotate(-0.25deg);
+  }
+
+  88% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes rf-bunny-hop-mobile {
+  0%,
+  68%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+
+  74% {
+    transform: translateX(-50%) translateY(-10px) rotate(-0.5deg);
+  }
+
+  80% {
+    transform: translateX(-50%) translateY(0) rotate(0.4deg);
+  }
+
+  84% {
+    transform: translateX(-50%) translateY(-4px) rotate(-0.2deg);
+  }
+
+  88% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
 }
 
 .site-content {
   position: relative;
-  z-index: 1;
   min-height: 100vh;
 }
 
-/* =========================
-   Responsive Watermark
-========================= */
+.rf-section {
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+}
 
-@media (max-width: 1280px) {
-  .site-watermark {
-    top: 110px;
-    left: 0;
-    width: 1300px;
-    height: calc(100vh - 110px);
+.rf-eyebrow {
+  color: var(--rf-green-dark);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.rf-heading {
+  color: var(--rf-black);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.rf-card {
+  border: 1px solid var(--rf-border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.rf-button-primary,
+.rf-button-secondary {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-radius: 999px;
+  padding: 0.875rem 1.75rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.rf-button-primary,
+.rf-button-primary:visited {
+  border: 2px solid var(--rf-green);
+  background: var(--rf-green);
+  color: var(--rf-black) !important;
+  -webkit-text-fill-color: var(--rf-black);
+  box-shadow: 0 10px 24px rgba(132, 189, 0, 0.24);
+}
+
+.rf-button-secondary,
+.rf-button-secondary:visited {
+  border: 2px solid var(--rf-green);
+  background: var(--rf-black);
+  color: var(--rf-green) !important;
+  -webkit-text-fill-color: var(--rf-green);
+  box-shadow: 0 10px 24px rgba(16, 18, 16, 0.15);
+}
+
+@media (hover: hover) {
+  .rf-button-primary:hover {
+    transform: translateY(-2px);
+    background: #93d100;
+    box-shadow: 0 14px 30px rgba(132, 189, 0, 0.32);
+  }
+
+  .rf-button-secondary:hover {
+    transform: translateY(-2px);
+    background: var(--rf-black);
+    color: var(--rf-green) !important;
+    -webkit-text-fill-color: var(--rf-green);
+    box-shadow: 0 14px 30px rgba(132, 189, 0, 0.24);
   }
 }
 
-@media (max-width: 1024px) {
-  .site-watermark {
-    top: 130px;
-    left: -100px;
-    width: 1100px;
-    height: calc(100vh - 130px);
-  }
+.rf-button-primary:active,
+.rf-button-secondary:active {
+  transform: scale(0.98);
 }
 
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
   .site-watermark {
-    top: 150px;
-    left: -220px;
-    width: 900px;
-    height: calc(100vh - 150px);
+    top: 6rem;
+    left: 50%;
+    width: min(100vw, 48rem);
+    height: calc(100svh - 6rem);
+    transform: translateX(-50%);
+    background-position: center;
+    background-size: contain;
+    opacity: 0.42;
+    animation-name: rf-bunny-hop-mobile;
+  }
+
+  .rf-button-primary,
+  .rf-button-secondary {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .site-watermark {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

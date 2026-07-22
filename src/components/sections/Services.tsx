@@ -1,96 +1,126 @@
+import Link from "next/link";
+import {
+  ArrowRight,
+  Brush,
+  DoorOpen,
+  Fan,
+  Hammer,
+  MonitorUp,
+  Sofa,
+  type LucideIcon,
+} from "lucide-react";
+
 import Container from "@/components/layout/Container";
 
-const services = [
+type Service = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+const services: Service[] = [
   {
     title: "Drywall Repair",
     description:
       "Clean, professional repairs for holes, cracks, dents, and damaged drywall.",
+    icon: Hammer,
   },
   {
     title: "TV Mounting",
     description:
-      "Secure TV installation with proper hardware, careful alignment, and clean placement.",
+      "Secure installation with proper hardware, careful alignment, and clean placement.",
+    icon: MonitorUp,
   },
   {
     title: "Ceiling Fan Installation",
     description:
-      "Reliable ceiling fan replacement and installation for safer, more comfortable rooms.",
+      "Dependable ceiling fan replacement and installation for more comfortable rooms.",
+    icon: Fan,
   },
   {
     title: "Furniture Assembly",
     description:
-      "Accurate assembly for desks, beds, cabinets, shelving, storage, and more.",
+      "Careful assembly for desks, beds, cabinets, shelving, storage, and more.",
+    icon: Sofa,
   },
   {
     title: "Door Repair",
     description:
-      "Repair sticking doors, loose hinges, damaged hardware, drafts, and alignment problems.",
+      "Help with sticking doors, loose hinges, damaged hardware, drafts, and alignment.",
+    icon: DoorOpen,
   },
   {
-    title: "Painting",
+    title: "Painting & Touch-Ups",
     description:
-      "Interior touch-ups and smaller painting projects completed with careful preparation.",
+      "Smaller interior painting projects completed with careful preparation and cleanup.",
+    icon: Brush,
   },
 ];
 
 export default function Services() {
   return (
-    <section
-      id="services"
-      className="relative scroll-mt-24 bg-transparent py-24 sm:py-28"
-    >
+    <section id="services" className="rf-section scroll-mt-24">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-[0.28em] text-[#6d9911]">
-            What we do
-          </p>
+        <div className="grid gap-7 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+          <div>
+            <p className="rf-eyebrow">Handyman services</p>
 
-          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] text-black sm:text-5xl">
-            Dependable help for the jobs your home needs.
-          </h2>
+            <h2 className="mt-4 text-4xl font-black leading-[1.02] tracking-[-0.045em] text-[#101210] sm:text-5xl">
+              Practical help for the projects around your home.
+            </h2>
+          </div>
 
-          <p className="mt-6 text-lg leading-8 text-neutral-600">
+          <p className="max-w-2xl text-lg leading-8 text-[#646964] lg:justify-self-end">
             From quick repairs to careful installations, Rabbit&apos;s Foot
-            delivers professional workmanship without the runaround.
+            provides straightforward service without the runaround.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service, index) => (
-            <article
-              key={service.title}
-              className="group rounded-[1.75rem] border border-white/70 bg-white/75 p-7 shadow-[0_16px_50px_rgba(0,0,0,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#84bd00]/50 hover:bg-white/90 hover:shadow-[0_22px_60px_rgba(0,0,0,0.13)]"
-            >
-              <div className="flex size-12 items-center justify-center rounded-full bg-[#84bd00] text-lg font-black text-black">
-                {String(index + 1).padStart(2, "0")}
-              </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service) => {
+            const Icon = service.icon;
 
-              <h3 className="mt-7 text-2xl font-black tracking-tight text-black">
-                {service.title}
-              </h3>
-
-              <p className="mt-4 leading-7 text-neutral-600">
-                {service.description}
-              </p>
-
-              <a
-                href="#estimate"
-                className="mt-7 inline-flex items-center gap-2 font-black text-black transition group-hover:text-[#6d9911]"
+            return (
+              <article
+                key={service.title}
+                className="rf-card group flex min-h-[20rem] flex-col p-7 sm:p-8"
               >
-                Request this service
-                <span aria-hidden="true">→</span>
-              </a>
-            </article>
-          ))}
+                <span className="flex size-14 items-center justify-center rounded-2xl bg-[#84bd00] text-[#101210] shadow-[0_10px_25px_rgba(132,189,0,0.2)]">
+                  <Icon aria-hidden="true" className="size-7" />
+                </span>
+
+                <h3 className="mt-7 text-2xl font-black tracking-[-0.035em] text-[#101210]">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 leading-7 text-[#646964]">
+                  {service.description}
+                </p>
+
+                <Link
+                  href="/contact#estimate-form"
+                  className="mt-auto inline-flex items-center gap-2 pt-7 font-black text-[#527700] transition-colors hover:text-[#101210]"
+                >
+                  Request this service
+                  <ArrowRight aria-hidden="true" className="size-4" />
+                </Link>
+              </article>
+            );
+          })}
         </div>
 
-        <div className="mt-12 flex justify-center">
-          <a
-            href="#estimate"
-            className="inline-flex min-h-14 items-center justify-center rounded-full bg-black px-8 font-black text-white shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#84bd00] hover:text-black"
+        <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+          <Link href="/services" className="rf-button-secondary">
+            View All Services
+            <ArrowRight aria-hidden="true" className="size-5" />
+          </Link>
+
+          <Link
+            href="/contact#estimate-form"
+            className="rf-button-primary"
           >
-            Get a Free Estimate
-          </a>
+            Request a Free Estimate
+          </Link>
         </div>
       </Container>
     </section>

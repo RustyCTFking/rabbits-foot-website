@@ -1,5 +1,5 @@
 import {
-  ArrowUpRight,
+  ArrowRight,
   Mail,
   Phone,
 } from "lucide-react";
@@ -8,22 +8,22 @@ import Container from "@/components/layout/Container";
 
 export default function ContactCTA() {
   return (
-    <section className="px-4 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8">
+    <section className="px-4 pb-24 pt-12 sm:px-6 sm:pb-28 sm:pt-16 lg:px-8">
       <Container>
-        <div className="relative overflow-hidden rounded-[2.25rem] bg-[#84bd00] px-7 py-14 text-black shadow-[0_24px_70px_rgba(132,189,0,0.22)] sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] px-7 py-14 text-white shadow-[0_30px_80px_rgba(0,0,0,0.22)] sm:px-10 sm:py-16 lg:px-16 lg:py-20">
           <div
             aria-hidden="true"
-            className="absolute -right-28 -top-28 size-80 rounded-full bg-white/25 blur-3xl"
+            className="absolute -right-28 -top-28 size-80 rounded-full bg-[#84bd00]/20 blur-3xl"
           />
 
           <div
             aria-hidden="true"
-            className="absolute -bottom-32 -left-24 size-72 rounded-full bg-black/10 blur-3xl"
+            className="absolute -bottom-32 -left-24 size-72 rounded-full bg-[#84bd00]/10 blur-3xl"
           />
 
-          <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+          <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
             <div className="max-w-3xl">
-              <p className="text-sm font-black uppercase tracking-[0.3em] text-black/60">
+              <p className="rf-eyebrow text-[#84bd00]">
                 Ready to get started?
               </p>
 
@@ -31,36 +31,38 @@ export default function ContactCTA() {
                 Let&apos;s take care of your project.
               </h2>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">
-                Submit your project details for an estimate request, or contact
-                Rabbit&apos;s Foot Handyman Services directly to discuss the
-                work you need completed.
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
+                Submit your project details and photos through the estimate
+                form, or call Rabbit&apos;s Foot to discuss the work you need.
               </p>
+
+              <a
+                href="mailto:estimates@callrabbitsfoot.com"
+                className="mt-7 inline-flex max-w-full items-center gap-3 break-all font-bold text-white/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#84bd00]/30"
+              >
+                <Mail
+                  aria-hidden="true"
+                  className="size-5 shrink-0 text-[#84bd00]"
+                />
+                estimates@callrabbitsfoot.com
+              </a>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+            <div className="flex min-w-0 flex-col gap-4 lg:min-w-72">
               <a
                 href="#estimate-form"
-                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-black px-8 font-black text-white shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-black"
+                className="rf-button-primary"
               >
                 Request an Estimate
-                <ArrowUpRight aria-hidden="true" className="size-5" />
+                <ArrowRight aria-hidden="true" className="size-5" />
               </a>
 
               <a
                 href="tel:+15747035978"
-                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border-2 border-black/25 px-8 font-black text-black transition duration-300 hover:-translate-y-0.5 hover:border-black hover:bg-black hover:text-white"
+                className="rf-button-secondary"
               >
                 <Phone aria-hidden="true" className="size-5" />
                 Call (574) 703-5978
-              </a>
-
-              <a
-                href="mailto:callrabbitsfoot@gmail.com"
-                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border-2 border-black/25 px-8 font-black text-black transition duration-300 hover:-translate-y-0.5 hover:border-black hover:bg-black hover:text-white"
-              >
-                <Mail aria-hidden="true" className="size-5" />
-                Send an Email
               </a>
             </div>
           </div>

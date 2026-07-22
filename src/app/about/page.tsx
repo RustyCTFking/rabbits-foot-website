@@ -1,4 +1,14 @@
-import { CheckCircle2, Hammer, HeartHandshake, Home, Phone } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Hammer,
+  HeartHandshake,
+  Home,
+  MapPin,
+  Phone,
+} from "lucide-react";
 
 import Container from "@/components/layout/Container";
 
@@ -7,162 +17,225 @@ const values = [
     icon: HeartHandshake,
     title: "Honest Communication",
     description:
-      "We believe homeowners deserve clear communication, realistic expectations, and dependable service from the first conversation to the final walkthrough.",
+      "Clear conversations, realistic expectations, and straightforward answers from the first request through project completion.",
   },
   {
     icon: Hammer,
-    title: "Quality Workmanship",
+    title: "Careful Workmanship",
     description:
-      "Every project—large or small—deserves careful attention to detail and workmanship you can feel confident about.",
+      "Every project—large or small—receives close attention to detail and a practical approach.",
   },
   {
     icon: Home,
     title: "Respect for Your Home",
     description:
-      "Your home is important. We treat it with care and work to leave every project area clean and orderly.",
+      "We understand that your home matters. Project areas are treated carefully and kept as orderly as possible.",
   },
 ];
 
-const reasons = [
+const expectations = [
   "Friendly, dependable service",
-  "Clear communication",
-  "Honest pricing",
+  "Clear project communication",
   "Attention to detail",
-  "Professional appearance",
-  "Locally focused",
+  "Respect for your property",
+  "Professional presentation",
+  "Local Michiana service",
 ];
 
-export const metadata = {
-  title: "About | Rabbit's Foot Handyman Services",
+export const metadata: Metadata = {
+  title: "About Our Handyman Service",
   description:
-    "Learn more about Rabbit's Foot Handyman Services and our commitment to dependable home repairs and honest customer service.",
+    "Learn about Rabbit's Foot Handyman Services and our commitment to dependable repairs, careful workmanship, and clear communication throughout Mishawaka and nearby communities.",
 };
 
 export default function AboutPage() {
   return (
-    <main>
-      <section className="pt-36 pb-24">
+    <main className="overflow-hidden">
+      <section className="px-4 pb-16 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8">
         <Container>
-          <div className="max-w-4xl">
-            <p className="text-sm font-black uppercase tracking-[0.3em] text-[#84bd00]">
-              About Rabbit's Foot
-            </p>
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] px-7 py-14 text-white shadow-[0_30px_90px_rgba(0,0,0,0.22)] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+            <div
+              aria-hidden="true"
+              className="absolute -right-24 -top-24 size-96 rounded-full bg-[#84bd00]/20 blur-3xl"
+            />
 
-            <h1 className="mt-6 text-5xl font-black leading-tight tracking-[-0.04em] lg:text-7xl">
-              Dependable handyman service built on honesty, quality, and respect.
-            </h1>
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-32 -left-24 size-80 rounded-full bg-[#84bd00]/10 blur-3xl"
+            />
 
-            <p className="mt-8 max-w-3xl text-xl leading-9 text-neutral-600">
-              Rabbit's Foot Handyman Services was created with one goal in mind:
-              helping homeowners complete the repairs and improvements that make
-              a house feel cared for. Whether it's a simple repair or a weekend
-              project you've been putting off, we're here to make the process
-              straightforward and stress-free.
-            </p>
-          </div>
-        </Container>
-      </section>
+            <div className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <div>
+                <p className="rf-eyebrow text-[#84bd00]">
+                  About Rabbit&apos;s Foot
+                </p>
 
-      <section className="pb-24">
-        <Container>
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="text-4xl font-black">
-                Why Rabbit's Foot?
-              </h2>
+                <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-7xl">
+                  Dependable handyman help with a personal, local approach.
+                </h1>
 
-              <p className="mt-6 leading-8 text-neutral-600">
-                Every homeowner deserves someone they can trust to show up,
-                communicate clearly, and take pride in the finished work.
-                That's the standard we strive to meet on every project.
-              </p>
+                <p className="mt-8 max-w-3xl text-lg leading-8 text-white/70 sm:text-xl sm:leading-9">
+                  Rabbit&apos;s Foot helps homeowners complete repairs,
+                  installations, assembly projects, and smaller improvements
+                  with clear communication and respect for their homes.
+                </p>
+              </div>
 
-              <p className="mt-6 leading-8 text-neutral-600">
-                We understand that inviting someone into your home requires
-                confidence. That's why we focus on professionalism, reliability,
-                and treating every customer's home with respect.
-              </p>
-            </div>
+              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm sm:p-8">
+                <div className="flex size-14 items-center justify-center rounded-2xl bg-[#84bd00] text-black">
+                  <MapPin aria-hidden="true" className="size-7" />
+                </div>
 
-            <div className="rounded-[2rem] bg-[#111111] p-10 text-white">
-              <h3 className="text-2xl font-black">
-                What You Can Expect
-              </h3>
+                <h2 className="mt-6 text-2xl font-black">
+                  Proudly serving Michiana
+                </h2>
 
-              <div className="mt-8 grid gap-5">
-                {reasons.map((reason) => (
-                  <div key={reason} className="flex items-center gap-4">
-                    <CheckCircle2 className="text-[#84bd00]" size={24} />
-
-                    <span className="text-lg">{reason}</span>
-                  </div>
-                ))}
+                <p className="mt-3 leading-7 text-white/65">
+                  Based in the Mishawaka area and serving South Bend, Granger,
+                  Elkhart, and surrounding Northern Indiana communities.
+                </p>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="pb-24">
+      <section className="rf-section">
         <Container>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-20">
+            <div>
+              <p className="rf-eyebrow">Our approach</p>
+
+              <h2 className="rf-heading mt-5">
+                Home repairs should feel straightforward.
+              </h2>
+
+              <p className="mt-7 text-lg leading-8 text-neutral-600">
+                Rabbit&apos;s Foot was created to help homeowners take care of
+                the repairs and improvements that keep a home comfortable,
+                useful, and well maintained.
+              </p>
+
+              <p className="mt-5 text-lg leading-8 text-neutral-600">
+                Inviting someone into your home requires trust. That&apos;s why
+                we focus on listening carefully, explaining the work clearly,
+                and treating each project with the attention it deserves.
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] p-7 text-white shadow-[0_24px_70px_rgba(0,0,0,0.18)] sm:p-10">
+              <div
+                aria-hidden="true"
+                className="absolute -right-20 -top-20 size-64 rounded-full bg-[#84bd00]/15 blur-3xl"
+              />
+
+              <div className="relative">
+                <p className="rf-eyebrow text-[#84bd00]">
+                  What you can expect
+                </p>
+
+                <div className="mt-7 grid gap-4">
+                  {expectations.map((expectation) => (
+                    <div
+                      key={expectation}
+                      className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] p-4"
+                    >
+                      <CheckCircle2
+                        aria-hidden="true"
+                        className="size-6 shrink-0 text-[#84bd00]"
+                        strokeWidth={2.5}
+                      />
+
+                      <span className="font-bold text-white/85">
+                        {expectation}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="rf-section pt-0">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="rf-eyebrow">What guides our work</p>
+
+            <h2 className="rf-heading mt-5">
+              Service built around your home and your needs.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {values.map((value) => {
               const Icon = value.icon;
 
               return (
-                <div
-                  key={value.title}
-                  className="rounded-[2rem] bg-white p-8 shadow-lg"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#84bd00]">
-                    <Icon size={28} className="text-black" />
+                <article key={value.title} className="rf-card p-7 sm:p-8">
+                  <div className="flex size-14 items-center justify-center rounded-2xl bg-[#84bd00] text-black shadow-[0_10px_24px_rgba(132,189,0,0.2)]">
+                    <Icon
+                      aria-hidden="true"
+                      className="size-7"
+                      strokeWidth={2.2}
+                    />
                   </div>
 
-                  <h3 className="mt-6 text-2xl font-black">
+                  <h3 className="mt-6 text-2xl font-black leading-tight tracking-[-0.03em] text-black">
                     {value.title}
                   </h3>
 
                   <p className="mt-4 leading-7 text-neutral-600">
                     {value.description}
                   </p>
-                </div>
+                </article>
               );
             })}
           </div>
         </Container>
       </section>
 
-      <section className="pb-28">
+      <section className="px-4 pb-24 pt-12 sm:px-6 sm:pb-28 sm:pt-16 lg:px-8">
         <Container>
-          <div className="rounded-[2.5rem] bg-[#111111] px-10 py-20 text-center text-white">
-            <p className="text-sm font-black uppercase tracking-[0.3em] text-[#84bd00]">
-              Ready to get started?
-            </p>
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#101210] px-7 py-14 text-center text-white shadow-[0_30px_80px_rgba(0,0,0,0.22)] sm:px-12 sm:py-20">
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-0 size-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#84bd00]/20 blur-3xl"
+            />
 
-            <h2 className="mt-5 text-5xl font-black">
-              Let's take care of your to-do list.
-            </h2>
+            <div className="relative mx-auto max-w-3xl">
+              <p className="rf-eyebrow text-[#84bd00]">
+                Ready to get started?
+              </p>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              Whether you need a repair, installation, or another handyman
-              service, we'd be happy to discuss your project.
-            </p>
+              <h2 className="mt-5 text-4xl font-black leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+                Let&apos;s take care of your home project.
+              </h2>
 
-            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-              <a
-                href="mailto:callrabbitsfoot@gmail.com"
-                className="rounded-full bg-[#84bd00] px-8 py-4 font-black text-black transition hover:bg-[#93d100]"
-              >
-                Request an Estimate
-              </a>
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/70">
+                Tell us what you need repaired, installed, assembled, or
+                improved. We&apos;ll review the details and help determine the
+                next step.
+              </p>
 
-              <a
-                href="tel:+15747035978"
-                className="inline-flex items-center justify-center gap-3 rounded-full border-2 border-white/30 px-8 py-4 font-black text-white transition hover:bg-white hover:text-black"
-              >
-                <Phone size={20} />
-                Call (574) 703-5978
-              </a>
+              <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <Link
+                  href="/contact#estimate-form"
+                  className="rf-button-primary sm:w-auto"
+                >
+                  Request an Estimate
+                  <ArrowRight aria-hidden="true" className="size-5" />
+                </Link>
+
+                <a
+                  href="tel:+15747035978"
+                  className="rf-button-secondary sm:w-auto"
+                >
+                  <Phone aria-hidden="true" className="size-5" />
+                  Call (574) 703-5978
+                </a>
+              </div>
             </div>
           </div>
         </Container>
